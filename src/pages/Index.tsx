@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
@@ -36,7 +35,7 @@ const Index: React.FC = () => {
             className="text-center space-y-4 mb-10"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-              Welcome to <span className="text-primary">whatsCET</span>
+              Welcome to <span className="text-primary">Wht@CET</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Your guide to events and locations across campus.

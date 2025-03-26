@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,6 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
@@ -30,7 +28,6 @@ const Navbar: React.FC = () => {
     <header className="sticky top-0 z-50 glass-nav">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="h-16 flex items-center justify-between">
-          {/* Logo */}
           <NavLink to="/" className="flex items-center space-x-2">
             <motion.div
               className="font-bold text-xl text-primary"
@@ -38,11 +35,10 @@ const Navbar: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              whatsCET
+              Wht@CET
             </motion.div>
           </NavLink>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <NavLink
@@ -77,7 +73,6 @@ const Navbar: React.FC = () => {
             </NavLink>
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -91,7 +86,6 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
