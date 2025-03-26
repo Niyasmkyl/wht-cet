@@ -34,13 +34,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         {children}
       </motion.main>
-      <footer className="py-6 px-4 sm:px-6 md:px-8 border-t border-gray-200/50">
+      <footer className="py-6 px-4 sm:px-6 md:px-8 border-t border-gray-200/50 dark:border-gray-700/50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <h3 className="text-lg font-medium text-gray-900">Wht@CET</h3>
-            <p className="text-sm text-gray-500">Your campus navigation companion</p>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Wht@CET</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Your campus navigation companion</p>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} Wht@CET. All rights reserved.
           </div>
         </div>

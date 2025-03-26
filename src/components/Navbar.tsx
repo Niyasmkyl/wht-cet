@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X, Calendar, Map, Home } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,41 +41,46 @@ const Navbar: React.FC = () => {
             </motion.div>
           </NavLink>
 
-          <nav className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
+          <div className="flex items-center space-x-1">
+            <ThemeToggle />
+            
+            <nav className="hidden md:flex items-center space-x-1">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  className={({ isActive }) =>
+                    cn(
+                      "px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300",
+                      isActive
+                        ? "text-primary bg-primary/10"
+                        : "text-gray-600 hover:text-primary hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    )
+                  }
+                >
+                  {link.icon}
+                  {link.label}
+                </NavLink>
+              ))}
               <NavLink
-                key={link.path}
-                to={link.path}
+                to="/accessibility"
                 className={({ isActive }) =>
                   cn(
-                    "px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300",
+                    "px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300 line-through",
                     isActive
-                      ? "text-primary bg-primary/10"
-                      : "text-gray-600 hover:text-primary hover:bg-gray-100"
+                      ? "text-primary/50 bg-primary/5"
+                      : "text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
                   )
                 }
               >
-                {link.icon}
-                {link.label}
+                Accessibility
+                <span className="ml-2 text-xs bg-gray-200 dark:bg-gray-700 px-2 py-0.5 rounded-full">Soon</span>
               </NavLink>
-            ))}
-            <NavLink
-              to="/accessibility"
-              className={({ isActive }) =>
-                cn(
-                  "px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300 line-through",
-                  isActive
-                    ? "text-primary/50 bg-primary/5"
-                    : "text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-                )
-              }
-            >
-              Accessibility
-              <span className="ml-2 text-xs bg-gray-200 px-2 py-0.5 rounded-full">Soon</span>
-            </NavLink>
-          </nav>
+            </nav>
+          </div>
 
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-1">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
@@ -93,7 +100,7 @@ const Navbar: React.FC = () => {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="md:hidden glass-nav border-t border-gray-200/50"
+            className="md:hidden glass-nav border-t border-gray-200/50 dark:border-gray-700/50"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navLinks.map((link) => (
@@ -105,7 +112,7 @@ const Navbar: React.FC = () => {
                       "flex items-center px-3 py-2 rounded-md text-base font-medium",
                       isActive
                         ? "text-primary bg-primary/10"
-                        : "text-gray-600 hover:text-primary hover:bg-gray-100"
+                        : "text-gray-600 hover:text-primary hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                     )
                   }
                 >
@@ -115,10 +122,10 @@ const Navbar: React.FC = () => {
               ))}
               <NavLink
                 to="/accessibility"
-                className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-gray-500 hover:bg-gray-100 line-through"
+                className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 line-through"
               >
                 Accessibility
-                <span className="ml-2 text-xs bg-gray-200 px-2 py-0.5 rounded-full">Soon</span>
+                <span className="ml-2 text-xs bg-gray-200 dark:bg-gray-700 px-2 py-0.5 rounded-full">Soon</span>
               </NavLink>
             </div>
           </motion.div>
