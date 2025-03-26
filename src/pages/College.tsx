@@ -247,8 +247,7 @@ const College: React.FC = () => {
                     animate="visible"
                   >
                     {filteredRooms.map(room => {
-                      const buildingForRoom = findBuilding(room.building
-Id);
+                      const buildingForRoom = findBuilding(room.buildingId);
                       if (!buildingForRoom) return null;
                       return (
                         <RoomCard 
