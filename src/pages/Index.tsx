@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
@@ -34,10 +35,10 @@ const Index: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center space-y-4 mb-10"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
               Welcome to <span className="text-primary">Wht@CET</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Your guide to events and locations across campus.
               Find what's happening and where it's located, all in one place.
             </p>
@@ -56,14 +57,14 @@ const Index: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Link to="/events" className="block">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl border border-blue-200/50 shadow-sm transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 p-8 rounded-xl border border-blue-200/50 dark:border-blue-700/30 shadow-sm transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                   <div className="flex items-start mb-4">
                     <div className="bg-primary/10 p-3 rounded-lg">
                       <Calendar className="h-6 w-6 text-primary" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">Browse Events</h3>
-                  <p className="text-gray-600 mb-4">
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">Browse Events</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
                     Discover upcoming workshops, lectures, and social gatherings happening around campus.
                   </p>
                   <div className="flex items-center text-primary font-medium">
@@ -80,14 +81,14 @@ const Index: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Link to="/college" className="block">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl border border-green-200/50 shadow-sm transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 p-8 rounded-xl border border-green-200/50 dark:border-green-700/30 shadow-sm transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                   <div className="flex items-start mb-4">
                     <div className="bg-cet-green/10 p-3 rounded-lg">
                       <Map className="h-6 w-6 text-cet-green" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">Campus Map</h3>
-                  <p className="text-gray-600 mb-4">
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">Campus Map</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
                     Navigate the campus with ease. Find classrooms, labs, and other important buildings.
                   </p>
                   <div className="flex items-center text-cet-green font-medium">
@@ -122,7 +123,7 @@ const Index: React.FC = () => {
             </div>
           ) : (
             <div className="text-center py-10">
-              <p className="text-lg text-gray-500">No upcoming events scheduled.</p>
+              <p className="text-lg text-gray-500 dark:text-gray-400">No upcoming events scheduled.</p>
               <Button 
                 variant="outline" 
                 className="mt-4"
