@@ -8,7 +8,10 @@ export interface Event {
   endDate: Date;
   imageUrl?: string;
   roomId: string;
+  category: EventCategory;
 }
+
+export type EventCategory = 'workshop' | 'technical' | 'cultural' | 'sports' | 'other';
 
 export interface Room {
   id: string;

@@ -32,6 +32,13 @@ export const buildings: Building[] = [
     imageUrl: "/placeholder.svg"
   },
   {
+    id: "5",
+    name: "Main Block",
+    description: "Administrative main building with offices and rooms",
+    mapNumber: 5,
+    imageUrl: "/placeholder.svg"
+  },
+  {
     id: "33",
     name: "Play Area",
     description: "Central campus recreation area",
@@ -113,6 +120,47 @@ export const rooms: Room[] = [
     floor: 2,
     type: RoomType.OTHER,
     description: "Conference room for department meetings and presentations"
+  },
+  // Main Block rooms
+  {
+    id: "501",
+    name: "Principal's Office",
+    buildingId: "5",
+    floor: 1,
+    type: RoomType.OFFICE,
+    description: "Office of the College Principal"
+  },
+  {
+    id: "502",
+    name: "IEDC Room",
+    buildingId: "5",
+    floor: 1,
+    type: RoomType.OFFICE,
+    description: "Innovation and Entrepreneurship Development Cell"
+  },
+  {
+    id: "503",
+    name: "SA Dean Room",
+    buildingId: "5",
+    floor: 2,
+    type: RoomType.OFFICE,
+    description: "Office of the Student Affairs Dean"
+  },
+  {
+    id: "504",
+    name: "IA Dean Room",
+    buildingId: "5",
+    floor: 2,
+    type: RoomType.OFFICE,
+    description: "Office of the Industrial Affairs Dean"
+  },
+  {
+    id: "505",
+    name: "UG Dean Room",
+    buildingId: "5",
+    floor: 2,
+    type: RoomType.OFFICE,
+    description: "Office of the Undergraduate Studies Dean"
   }
 ];
 
@@ -140,7 +188,8 @@ export const events: Event[] = [
     startDate: dayFromNow(2),
     endDate: hoursFromTime(dayFromNow(2), 3),
     roomId: "103",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80",
+    category: "workshop"
   },
   {
     id: "2",
@@ -150,7 +199,8 @@ export const events: Event[] = [
     startDate: dayFromNow(5),
     endDate: dayFromNow(6),
     roomId: "101",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80",
+    category: "technical"
   },
   {
     id: "3",
@@ -160,7 +210,8 @@ export const events: Event[] = [
     startDate: dayFromNow(1),
     endDate: hoursFromTime(dayFromNow(1), 2),
     roomId: "402",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&q=80",
+    category: "technical"
   },
   {
     id: "4",
@@ -170,7 +221,8 @@ export const events: Event[] = [
     startDate: dayFromNow(7),
     endDate: dayFromNow(7),
     roomId: "401",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80",
+    category: "technical"
   },
   {
     id: "5",
@@ -180,7 +232,8 @@ export const events: Event[] = [
     startDate: dayFromNow(10),
     endDate: dayFromNow(10),
     roomId: "33",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80",
+    category: "workshop"
   },
   {
     id: "6",
@@ -190,6 +243,40 @@ export const events: Event[] = [
     startDate: dayFromNow(15),
     endDate: dayFromNow(15),
     roomId: "301",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80",
+    category: "technical"
+  },
+  {
+    id: "7",
+    title: "Annual Cultural Fest",
+    description: "Celebration of art, music, dance and cultural activities",
+    location: "Play Area",
+    startDate: dayFromNow(20),
+    endDate: dayFromNow(22),
+    roomId: "33",
+    imageUrl: "https://images.unsplash.com/photo-1508974642599-c7c7d7fce312?auto=format&fit=crop&q=80",
+    category: "cultural"
+  },
+  {
+    id: "8",
+    title: "Inter-Department Sports Meet",
+    description: "Annual sports competition between various departments",
+    location: "Play Area",
+    startDate: dayFromNow(12),
+    endDate: dayFromNow(14),
+    roomId: "33",
+    imageUrl: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80",
+    category: "sports"
+  },
+  {
+    id: "9",
+    title: "Hackathon 2023",
+    description: "24-hour coding challenge for innovative solutions",
+    location: "IEDC Room",
+    startDate: dayFromNow(8),
+    endDate: dayFromNow(9),
+    roomId: "502",
+    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80",
+    category: "technical"
   }
 ];

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
@@ -6,10 +5,12 @@ import EventCard from "@/components/EventCard";
 import SearchBar from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { Calendar, ChevronLeft, ChevronRight, FilterX, SlidersHorizontal } from "lucide-react";
-import { events } from "@/utils/mockData";
+import { events, buildings, rooms } from "@/utils/mockData";
 import { Event } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import EventCategoryFilter from "@/components/EventCategoryFilter";
+import EventLocationButton from "@/components/EventLocationButton";
 import {
   Select,
   SelectContent,
@@ -25,24 +26,33 @@ const Events: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [timeFilter, setTimeFilter] = useState<string>("all");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [sortOrder, setSortOrder] = useState<string>("upcoming");
   
-  // Parse search query from URL if present
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get("search");
+    const categoryParam = params.get("category");
+    
     if (searchParam) {
       setSearchQuery(searchParam);
-      filterEvents(searchParam, timeFilter, sortOrder);
-    } else {
-      filterEvents("", timeFilter, sortOrder);
     }
+    
+    if (categoryParam) {
+      setCategoryFilter(categoryParam);
+    }
+    
+    filterEvents(
+      searchParam || "", 
+      timeFilter, 
+      categoryParam || "all", 
+      sortOrder
+    );
   }, [location.search]);
   
-  const filterEvents = (search: string, time: string, sort: string) => {
+  const filterEvents = (search: string, time: string, category: string, sort: string) => {
     let result = [...events];
     
-    // Apply search filter
     if (search) {
       const searchLower = search.toLowerCase();
       result = result.filter(
@@ -53,7 +63,10 @@ const Events: React.FC = () => {
       );
     }
     
-    // Apply time filter
+    if (category !== "all") {
+      result = result.filter(event => event.category === category);
+    }
+    
     const now = new Date();
     if (time === "upcoming") {
       result = result.filter(event => event.startDate > now);
@@ -79,7 +92,6 @@ const Events: React.FC = () => {
       );
     }
     
-    // Apply sorting
     if (sort === "upcoming") {
       result.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
     } else if (sort === "recent") {
@@ -91,26 +103,54 @@ const Events: React.FC = () => {
   
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    navigate(`/events?search=${encodeURIComponent(query)}`);
-    filterEvents(query, timeFilter, sortOrder);
+    
+    const params = new URLSearchParams(location.search);
+    if (query) {
+      params.set("search", query);
+    } else {
+      params.delete("search");
+    }
+    
+    navigate(`/events?${params.toString()}`);
+    filterEvents(query, timeFilter, categoryFilter, sortOrder);
+  };
+  
+  const handleCategoryChange = (category: string) => {
+    setCategoryFilter(category);
+    
+    const params = new URLSearchParams(location.search);
+    if (category !== "all") {
+      params.set("category", category);
+    } else {
+      params.delete("category");
+    }
+    
+    navigate(`/events?${params.toString()}`);
+    filterEvents(searchQuery, timeFilter, category, sortOrder);
   };
   
   const handleTimeFilterChange = (value: string) => {
     setTimeFilter(value);
-    filterEvents(searchQuery, value, sortOrder);
+    filterEvents(searchQuery, value, categoryFilter, sortOrder);
   };
   
   const handleSortChange = (value: string) => {
     setSortOrder(value);
-    filterEvents(searchQuery, timeFilter, value);
+    filterEvents(searchQuery, timeFilter, categoryFilter, value);
   };
   
   const clearFilters = () => {
     setTimeFilter("all");
+    setCategoryFilter("all");
     setSortOrder("upcoming");
     setSearchQuery("");
     navigate("/events");
-    filterEvents("", "all", "upcoming");
+    filterEvents("", "all", "all", "upcoming");
+  };
+  
+  const findBuildingIdByRoomId = (roomId: string): string => {
+    const room = rooms.find(r => r.id === roomId);
+    return room ? room.buildingId : "";
   };
   
   const containerVariants = {
@@ -153,49 +193,56 @@ const Events: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="bg-gray-50 rounded-lg p-4 flex flex-col md:flex-row gap-4 border border-gray-200/50">
-                  <div className="w-full md:w-1/3">
-                    <label className="text-sm font-medium text-gray-700 mb-1 block">
-                      Time Frame
-                    </label>
-                    <Select value={timeFilter} onValueChange={handleTimeFilterChange}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Filter by time" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All Events</SelectItem>
-                        <SelectItem value="upcoming">Upcoming Events</SelectItem>
-                        <SelectItem value="past">Past Events</SelectItem>
-                        <SelectItem value="today">Today</SelectItem>
-                        <SelectItem value="week">This Week</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                <div className="bg-gray-50 rounded-lg p-4 flex flex-col gap-4 border border-gray-200/50">
+                  <EventCategoryFilter 
+                    selectedCategory={categoryFilter}
+                    onChange={handleCategoryChange}
+                  />
                   
-                  <div className="w-full md:w-1/3">
-                    <label className="text-sm font-medium text-gray-700 mb-1 block">
-                      Sort Order
-                    </label>
-                    <Select value={sortOrder} onValueChange={handleSortChange}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sort by" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="upcoming">Soonest First</SelectItem>
-                        <SelectItem value="recent">Latest First</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="w-full md:w-1/3 flex items-end">
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      onClick={clearFilters}
-                    >
-                      <FilterX className="h-4 w-4 mr-2" />
-                      Clear Filters
-                    </Button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 mb-1 block">
+                        Time Frame
+                      </label>
+                      <Select value={timeFilter} onValueChange={handleTimeFilterChange}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Filter by time" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Events</SelectItem>
+                          <SelectItem value="upcoming">Upcoming Events</SelectItem>
+                          <SelectItem value="past">Past Events</SelectItem>
+                          <SelectItem value="today">Today</SelectItem>
+                          <SelectItem value="week">This Week</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 mb-1 block">
+                        Sort Order
+                      </label>
+                      <Select value={sortOrder} onValueChange={handleSortChange}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sort by" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="upcoming">Soonest First</SelectItem>
+                          <SelectItem value="recent">Latest First</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="flex items-end">
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        onClick={clearFilters}
+                      >
+                        <FilterX className="h-4 w-4 mr-2" />
+                        Clear Filters
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -206,7 +253,6 @@ const Events: React.FC = () => {
         <Separator />
         
         <div>
-          {/* Results summary */}
           <div className="flex items-center justify-between mb-6">
             <div className="text-sm text-muted-foreground">
               {filteredEvents.length === 0
@@ -231,7 +277,6 @@ const Events: React.FC = () => {
             </div>
           </div>
           
-          {/* Event cards */}
           {filteredEvents.length > 0 ? (
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -240,7 +285,13 @@ const Events: React.FC = () => {
               animate="visible"
             >
               {filteredEvents.map(event => (
-                <EventCard key={event.id} event={event} />
+                <div key={event.id}>
+                  <EventCard event={event} />
+                  <EventLocationButton 
+                    roomId={event.roomId} 
+                    buildingId={findBuildingIdByRoomId(event.roomId)} 
+                  />
+                </div>
               ))}
             </motion.div>
           ) : (
@@ -264,7 +315,6 @@ const Events: React.FC = () => {
           )}
         </div>
         
-        {/* Pagination - could be implemented for larger sets of events */}
         {filteredEvents.length > 0 && (
           <div className="flex justify-center mt-8">
             <div className="flex items-center gap-2">

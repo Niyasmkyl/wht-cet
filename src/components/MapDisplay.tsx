@@ -137,6 +137,7 @@ const getMapPositionForBuilding = (mapNumber: number): React.CSSProperties => {
     2: { top: "15%", left: "70%" },   // PG Block
     3: { top: "35%", left: "50%" },   // Machines Lab Block
     4: { top: "25%", left: "65%" },   // P.G. Lab Block
+    5: { top: "40%", left: "25%" },   // Main Block (new)
     33: { top: "55%", left: "35%" },  // Play Area
     // Add more positions as needed
     20: { top: "45%", left: "45%" },
