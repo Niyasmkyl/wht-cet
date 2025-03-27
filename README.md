@@ -1,7 +1,7 @@
 # 🚀 DSolve-2025 Hackathon
 
 ## 👥 Team Information
-**Team Name:** [Your Creative Team Name]  
+**Team Name:** Easy Company  
 
 **Team Members:**
 - Niyas S Makkiyil
@@ -21,12 +21,6 @@ An app in which all the events happening on cet is visible and the mini map of C
 [![Watch the Demo](https://via.placeholder.com/300x200?text=Click+for+Demo+Video)](https://youtube.com/link-to-video)
 *Click the image above to view our product walkthrough*
 
-## 🛠️ Tech Stack
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Tech 1     | vX.X.X  |         |
-| Tech 1     | vX.X.X  |         |
-| Tech 1     | vX.X.X  |         |
 
 ## 🛠️ Setup Instructions
 
