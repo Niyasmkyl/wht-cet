@@ -1,69 +1,63 @@
-# Welcome to your Lovable project
+# 🚀 DSolve-2025 Hackathon
 
-## Project info
+## 👥 Team Information
+**Team Name:** [Your Creative Team Name]  
 
-**URL**: https://lovable.dev/projects/2fa88523-1f13-4fe4-9502-db765c068d11
+**Team Members:**
+- Niyas S Makkiyil
+- (https://github.com/Niyasmky) team member
+- Jecinta Jayan
+- (https://github.com/jsintheta) - team member
 
-## How can I edit this code?
+## 💡 Project Idea
+An app in which all the events happening on cet is visible and the mini map of CET.
 
-There are several ways of editing your application.
+## ✨ Key Features
+- 🔍 events: All the events happening can be viewed and can be registered so that a you will be notified 30 min before the event through whatsapp
+- ⚡ Map: The Map of cet will be visible and people can enter there point and where they want to go and it will provide directions 
+  
 
-**Use Lovable**
+## 🎥 Product Demo
+[![Watch the Demo](https://via.placeholder.com/300x200?text=Click+for+Demo+Video)](https://youtube.com/link-to-video)
+*Click the image above to view our product walkthrough*
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2fa88523-1f13-4fe4-9502-db765c068d11) and start prompting.
+## 🛠️ Tech Stack
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Tech 1     | vX.X.X  |         |
+| Tech 1     | vX.X.X  |         |
+| Tech 1     | vX.X.X  |         |
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Setup Instructions
 
-**Use your preferred IDE**
+### Prerequisites
+- Node.js v16+
+- npm run dev
+- [Any other requirements]
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+### Installation
+download node js and run it
+go to terminal and enter: 
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+
+### Running the Project
+in vscode terminal :
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🤝 How to Contribute
+We welcome contributions! Here are some ways you can help:
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Contribution Workflow
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-## What technologies are used for this project?
 
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2fa88523-1f13-4fe4-9502-db765c068d11) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## Acknowledgments
+- lovable.ai
